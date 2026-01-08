@@ -12,9 +12,12 @@ public class LinkedList {
     public Node head;
     public Node tail;
 
+    public static int size = 0;
+
     //add first
     public void addFirst(int data) {
         Node newNode = new Node(data);
+        size++;
         if (head == null) {
             head = tail = newNode;
             return;
@@ -26,6 +29,7 @@ public class LinkedList {
     //add last
     public void addLast(int data) {
         Node newNode = new Node(data);
+        size++;
         if (head == null) {
             head = tail = newNode;
             return;
@@ -54,6 +58,7 @@ public class LinkedList {
             return;
         }
         Node newNode = new Node(data);
+        size++;
         Node temp = head;
         int i = 0;
         while (i < idx - 1) {
@@ -64,12 +69,57 @@ public class LinkedList {
         temp.next = newNode;
     }
     
+    //remove first
+    public int removeFirst() {
+        if (size == 0) {
+            System.out.println("LinkedList is Empty");
+            return Integer.MIN_VALUE;
+        } else if (size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+        int val = head.data;
+        head = head.next;
+        size--;
+        return val;
+    }
+
+    //remove last
+    public int removeLast() {
+        if (size == 0) {
+            System.out.println("LinkedList is Empty");
+            return Integer.MIN_VALUE;
+        } else if (size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+        Node prev = head;
+        for (int i = 0; i < size - 2; i++) {
+            prev = prev.next;
+        }
+        int val = prev.next.data; //tail data
+        prev.next = null;
+        tail = prev;
+        size--;
+        return val;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
         ll.addFirst(1);
         ll.addLast(3);
-        ll.addMiddle(1, 6);
+        ll.addLast(4);
+        ll.addLast(5);
+        ll.addLast(7);
+        ll.addMiddle(5, 6);
+        ll.removeFirst();
+        ll.removeLast();
         ll.printLL();
+        System.out.println(size);
     }
 }
