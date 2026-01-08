@@ -108,6 +108,23 @@ public class LinkedList {
         return val;
     }
 
+    public int iterativeSearch(int key) {
+        if (head == null) {
+            System.out.println("Empty LinkedList");
+            return -1;
+        }
+        Node temp = head;
+        int i = 0;
+        while (temp != null) {
+            if (temp.data == key) {
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
@@ -121,5 +138,6 @@ public class LinkedList {
         ll.removeLast();
         ll.printLL();
         System.out.println(size);
+        System.out.println("Key found at index: "+ll.iterativeSearch(4));
     }
 }
