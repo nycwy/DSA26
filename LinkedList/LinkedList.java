@@ -125,6 +125,27 @@ public class LinkedList {
         return -1;
     }
 
+    public int healper(Node head, int key) {
+        if(head == null) {
+            return -1;
+        }
+
+        if(head.data == key) {
+            return 0;
+        }
+
+        int idx = healper(head.next, key);
+        if(idx == -1) {
+            return -1;
+        }
+
+        return idx + 1;
+    }
+
+    public int recSearch(int key){
+        return healper(head, key);
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
