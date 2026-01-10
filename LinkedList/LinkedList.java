@@ -144,8 +144,22 @@ public class LinkedList {
         return idx + 1;
     }
 
-    public int recSearch(int key){
+    public int recSearch(int key) {
         return healper(head, key);
+    }
+
+    public void reverseLL() {
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
     }
 
     public static void main(String[] args) {
@@ -160,8 +174,10 @@ public class LinkedList {
         ll.removeFirst();
         ll.removeLast();
         ll.printLL();
-        System.out.println(size);
-        System.out.println("Key found at index (Iterative Search): "+ll.iterativeSearch(4));
-        System.out.println("Key found at index (Recursive Search): "+ll.recSearch(5));
+        // System.out.println(size);
+        // System.out.println("Key found at index (Iterative Search): "+ll.iterativeSearch(4));
+        // System.out.println("Key found at index (Recursive Search): "+ll.recSearch(5));
+        ll.reverseLL();
+        ll.printLL();
     }
 }
