@@ -159,6 +159,7 @@ public class LinkedList {
         ll.removeLast();
         ll.printLL();
         System.out.println(size);
-        System.out.println("Key found at index: "+ll.iterativeSearch(4));
+        System.out.println("Key found at index (Iterative Search): "+ll.iterativeSearch(4));
+        System.out.println("Key found at index (Recursive Search): "+ll.recSearch(5));
     }
 }
