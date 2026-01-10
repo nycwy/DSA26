@@ -108,6 +108,7 @@ public class LinkedList {
         return val;
     }
 
+    //iterative search
     public int iterativeSearch(int key) {
         if (head == null) {
             System.out.println("Empty LinkedList");
@@ -125,6 +126,7 @@ public class LinkedList {
         return -1;
     }
 
+    //recursive search
     public int healper(Node head, int key) {
         if(head == null) {
             return -1;
