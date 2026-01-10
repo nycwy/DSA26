@@ -126,7 +126,7 @@ public class LinkedList {
         return -1;
     }
 
-    //recursive search
+    //recursive search  [ TC--> O(n) ]
     public int healper(Node head, int key) {
         if(head == null) {
             return -1;
@@ -148,6 +148,7 @@ public class LinkedList {
         return healper(head, key);
     }
 
+    //reverse Linked list  [ TC--> O(n) ]
     public void reverseLL() {
         Node prev = null;
         Node curr = tail = head;
