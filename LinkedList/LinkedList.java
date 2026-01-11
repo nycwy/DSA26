@@ -174,6 +174,7 @@ public class LinkedList {
         ll.addMiddle(5, 6);
         ll.removeFirst();
         ll.removeLast();
+        ll.addFirst(1);
         ll.printLL();
         // System.out.println(size);
         // System.out.println("Key found at index (Iterative Search): "+ll.iterativeSearch(4));
