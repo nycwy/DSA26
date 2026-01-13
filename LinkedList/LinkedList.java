@@ -163,6 +163,32 @@ public class LinkedList {
         head = prev;
     }
 
+    //deleting nth node from the end
+    public void deleteNthNodefromEnd(int n) {
+        int siz = 0;
+        Node temp = head;
+        while(temp != null) {
+            temp = temp.next;
+            siz++;
+        }
+
+        if(n == siz) {
+            head = head.next;
+            return;
+        }
+
+        int i = 1;
+        int iToFind = siz - n;
+        Node prev = head;
+        while( i< iToFind) {
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+        return;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
@@ -179,7 +205,8 @@ public class LinkedList {
         // System.out.println(size);
         // System.out.println("Key found at index (Iterative Search): "+ll.iterativeSearch(4));
         // System.out.println("Key found at index (Recursive Search): "+ll.recSearch(5));
-        ll.reverseLL();
+        // ll.reverseLL();
+        ll.deleteNthNodefromEnd(4);
         ll.printLL();
     }
 }
