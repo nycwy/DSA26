@@ -189,15 +189,61 @@ public class LinkedList {
         return;
     }
 
+    //slow-fast approach to find the mid node
+    public Node findMid(Node head) {
+        Node slow = head; //+1
+        Node fast = head; //+2
+
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow; //slow is the middle node
+    }
+
+    public boolean isPalindrome() {
+        if(head == null || head.next == null) {
+            return true;
+        }
+
+        //find mid
+        Node midNode = findMid(head);
+
+        //reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev =  curr;
+            curr = next;
+        }
+
+        Node rightHead = prev;
+        Node leftHead = head;
+
+        //check left half and right half
+        while(rightHead != null) {
+            if(leftHead.data != rightHead.data) {
+                return false;
+            }
+            leftHead = leftHead.next;
+            rightHead = rightHead.next;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
         ll.addFirst(1);
         ll.addLast(3);
-        ll.addLast(4);
-        ll.addLast(5);
+        ll.addLast(3);
+        ll.addLast(2);
         ll.addLast(7);
-        ll.addMiddle(5, 6);
+        ll.addMiddle(5, 1);
         ll.removeFirst();
         ll.removeLast();
         ll.addFirst(1);
@@ -206,8 +252,8 @@ public class LinkedList {
         // System.out.println("Key found at index (Iterative Search): "+ll.iterativeSearch(4));
         // System.out.println("Key found at index (Recursive Search): "+ll.recSearch(5));
         // ll.reverseLL();
-        ll.deleteNthNodefromEnd(4);
-        ll.printLL();
-        
+        // ll.deleteNthNodefromEnd(4);
+        // ll.printLL();
+        System.out.println(ll.isPalindrome());
     }
 }
