@@ -1,5 +1,5 @@
 public class LinkedList {
-    class Node {
+    static class Node {
         int data;
         Node next;
 
@@ -202,7 +202,7 @@ public class LinkedList {
     }
 
     public boolean isPalindrome() {
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return true;
         }
 
@@ -214,10 +214,10 @@ public class LinkedList {
         Node curr = midNode;
         Node next;
 
-        while(curr != null) {
+        while (curr != null) {
             next = curr.next;
             curr.next = prev;
-            prev =  curr;
+            prev = curr;
             curr = next;
         }
 
@@ -225,8 +225,8 @@ public class LinkedList {
         Node leftHead = head;
 
         //check left half and right half
-        while(rightHead != null) {
-            if(leftHead.data != rightHead.data) {
+        while (rightHead != null) {
+            if (leftHead.data != rightHead.data) {
                 return false;
             }
             leftHead = leftHead.next;
@@ -234,26 +234,51 @@ public class LinkedList {
         }
         return true;
     }
+    
+    // Detect the cycle
+    public boolean isCycle() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-        ll.addFirst(2);
-        ll.addFirst(1);
-        ll.addLast(3);
-        ll.addLast(3);
-        ll.addLast(2);
-        ll.addLast(7);
-        ll.addMiddle(5, 1);
-        ll.removeFirst();
-        ll.removeLast();
-        ll.addFirst(1);
-        ll.printLL();
+        // ll.addFirst(2);
+        // ll.addFirst(1);
+        // ll.addLast(3);
+        // ll.addLast(3);
+        // ll.addLast(2);
+        // ll.addLast(7);
+        // ll.addMiddle(5, 1);
+        // ll.removeFirst();
+        // ll.removeLast();
+        // ll.addFirst(1);
+        // ll.printLL();
         // System.out.println(size);
         // System.out.println("Key found at index (Iterative Search): "+ll.iterativeSearch(4));
         // System.out.println("Key found at index (Recursive Search): "+ll.recSearch(5));
         // ll.reverseLL();
         // ll.deleteNthNodefromEnd(4);
         // ll.printLL();
-        System.out.println(ll.isPalindrome());
+        // System.out.println(ll.isPalindrome());
+
+        ll.head = new Node(1);
+        ll.head.next = new Node(2);
+        ll.head.next.next = new Node(3);
+        ll.head.next.next.next = new Node(4);
+        ll.head.next.next.next.next = new Node(5);
+        ll.head.next.next.next.next.next = ll.head;
+
+        // ll.printLL();
+        System.out.println(ll.isCycle());
     }
 }
